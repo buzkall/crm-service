@@ -1,5 +1,6 @@
 ## Configuration
 
+
 1. Run composer
 
     For development: ```composer install```
@@ -27,11 +28,13 @@
     ```
    php artisan passport:install
     ```
+
+Project can run using 'php artisan serve'
    
 
 ## Test
 
 To run tests, execute
     ```
-   php artisan test
-   ```
+    php artisan test
+    ```
