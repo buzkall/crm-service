@@ -28,3 +28,10 @@
    php artisan passport:install
     ```
    
+
+## Test
+
+To run tests, execute
+    ```
+   php artisan test
+   ```

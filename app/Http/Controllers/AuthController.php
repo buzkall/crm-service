@@ -9,7 +9,6 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Validator;
 
 class AuthController extends Controller
 {
@@ -19,8 +18,8 @@ class AuthController extends Controller
                               'email'    => $request->email,
                               'password' => bcrypt($request->password)]);
 
-        $response = ['token' => $user->createToken('authToken')->accessToken,
-                     'name'  => $user->name];
+        $response = ['access_token' => $user->createToken('authToken')->accessToken,
+                     'name'         => $user->name];
 
         return $this->sendCreated($response, 'User created');
     }
