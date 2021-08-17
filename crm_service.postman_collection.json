@@ -20,7 +20,7 @@
 						},
 						{
 							"key": "email",
-							"value": "test4@mail.com",
+							"value": "test1@mail.com",
 							"type": "text"
 						},
 						{
@@ -60,12 +60,12 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "test@hola.com",
+							"value": "test1@mail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "1",
+							"value": "123456",
 							"type": "text"
 						},
 						{
@@ -92,9 +92,6 @@
 		},
 		{
 			"name": "Logout",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -106,7 +103,7 @@
 						}
 					]
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Accept",

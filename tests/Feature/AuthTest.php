@@ -129,7 +129,7 @@ test('User is able to logout', function () {
 
     $this->withHeaders(['Authorization' => 'Bearer ' . $response['data']['access_token'],
                         'Accept'        => 'application/json'])
-         ->get('/api/logout')
+         ->post('/api/logout')
          ->assertOk()
          ->assertJsonFragment(['success' => true])
          ->assertJsonFragment(['message' => 'Successfully logged out'])

@@ -29,7 +29,7 @@
    php artisan passport:install
     ```
 
-Project can run using 'php artisan serve'
+Project can run using 'php artisan serve' or using Docker with Laravel Sail
    
 
 ## Test
@@ -38,3 +38,5 @@ To run tests, execute
     ```
     php artisan test
     ```
+
+There is an exported collection of all the endpoints in Postman in ./crm_service.postman_collection.json  
