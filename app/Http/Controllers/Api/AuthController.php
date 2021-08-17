@@ -17,9 +17,11 @@ class AuthController extends Controller
     {
         $user = User::create(['name'     => $request->name,
                               'email'    => $request->email,
+                              'is_admin' => false,
                               'password' => bcrypt($request->password)]);
 
         $response = ['access_token' => $user->createToken('authToken')->accessToken,
+                     'id'           => $user->id,
                      'name'         => $user->name];
 
         return $this->sendCreated($response, 'User created');

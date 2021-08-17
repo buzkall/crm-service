@@ -11,7 +11,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password']; // is_admin is not allowed to set with mass assignment
     protected $hidden   = ['password', 'remember_token'];
+    protected $casts    = ['is_admin' => 'boolean'];
 
 }

@@ -77,12 +77,35 @@ test('User is able to register', function () {
               'password'              => '123456',
               'password_confirmation' => '123456'];
 
-    $this->post('/api/register', $input)
-         ->assertCreated()
-         ->assertJsonFragment(['success' => true])
-         ->assertJsonFragment(['message' => 'User created'])
-         ->assertJsonFragment(['name' => $name])
-         ->assertJsonStructure(['data' => ['access_token', 'name']]);
+    $result = $this->post('/api/register', $input)
+                   ->assertCreated()
+                   ->assertJsonFragment(['success' => true])
+                   ->assertJsonFragment(['message' => 'User created'])
+                   ->assertJsonFragment(['name' => $name])
+                   ->assertJsonStructure(['data' => ['access_token', 'name']]);
+
+    // validate the registered user is not an admin
+    $registeredUser = User::find($result['data']['id']);
+    $this->assertFalse($registeredUser->is_admin);
+});
+
+test('User tries to register as admin and fails', function () {
+    // validation rules in App\Http\Requests\RegisterRequest
+    $name = $this->faker()->name;
+    $input = ['name'                  => $name,
+              'email'                 => 'email@mail.com',
+              'is_admin'              => true,
+              'password'              => '123456',
+              'password_confirmation' => '123456'];
+
+    $result = $this->post('/api/register', $input)
+                   ->assertCreated()
+                   ->assertJsonFragment(['success' => true])
+                   ->assertJsonFragment(['message' => 'User created']);
+
+    // validate the registered user is not an admin
+    $registeredUser = User::find($result['data']['id']);
+    $this->assertFalse($registeredUser->is_admin);
 });
 
 test('User tries to login with incorrect data', function () {
