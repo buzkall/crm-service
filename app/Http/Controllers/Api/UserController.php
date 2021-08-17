@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -51,9 +52,12 @@ class UserController extends Controller
     {
         $this->authorize('updateAdminStatus', [User::class, $user]);
 
-        if (!$request->has('is_admin')) {
-            echo 'hola0';
-            die();
+        $validator = Validator::make($request->all(), [
+            'is_admin' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors(), 422);
         }
 
         $user->is_admin = $request->is_admin;

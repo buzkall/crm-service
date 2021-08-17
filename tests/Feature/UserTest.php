@@ -18,7 +18,7 @@ test('Admin User can list all users', function () {
     $this->actingAs($this->adminUser, 'api')
          ->get('/api/users')
          ->assertOk()
-         ->assertJsonCount(2,  'data')
+         ->assertJsonCount(2, 'data')
          ->assertSeeText('admin@mail.com')
          ->assertSeeText('user@mail.com');
 });
@@ -131,6 +131,22 @@ test('Admin User can change admin status', function () {
          ->assertJsonFragment(['message' => 'Status successfully changed']);
 
     $this->assertTrue($user->fresh()->is_admin);
+
+    $this->actingAs($this->adminUser, 'api')
+         ->put('/api/update-admin-status/' . $user->id, ['is_admin' => false])
+         ->assertOk()
+         ->assertJsonFragment(['success' => true])
+         ->assertJsonFragment(['message' => 'Status successfully changed']);
+
+    $this->assertFalse($user->fresh()->is_admin);
+
+    $this->actingAs($this->adminUser, 'api')
+         ->put('/api/update-admin-status/' . $user->id)
+         ->assertStatus(422)
+         ->assertJsonFragment(['success' => false])
+         ->assertJsonFragment(['is_admin' => ['The is admin field is required.']]);
+
+    $this->assertFalse($user->fresh()->is_admin);
 });
 
 test('Non admin User cannot change admin status', function () {
