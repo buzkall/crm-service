@@ -54,7 +54,6 @@
                                 <li>POST /api/register</li>
                                 <li>POST /api/login</li>
                                 <li>POST /api/logout</li>
-                                <li>POST /api/user</li>
                             </ul>
                         </div>
                     </div>
@@ -68,6 +67,38 @@
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                             routes
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-6">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold dark:text-white">Users</div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            <ul>
+                                <li>GET /api/users</li>
+                                <li>POST /api/users</li>
+                                <li>GET /api/users/{id}</li>
+                                <li>PUT /api/users/{id}</li>
+                                <li>DELETE /api/users/{id}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+                    <div class="flex items-center">
+                        <div class="ml-4 text-lg leading-7 font-semibold dark:text-white"></div>
+                    </div>
+
+                    <div class="ml-12">
+                        <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
+                            -
                         </div>
                     </div>
                 </div>

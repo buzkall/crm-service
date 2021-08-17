@@ -34,6 +34,11 @@ class Controller extends BaseController
         return $this->sendResponse($result, $message, 201);
     }
 
+    public function sendNoContent(): JsonResponse
+    {
+        return $this->sendResponse([], 'Successfully deleted', 204);
+    }
+
     public function sendError($error, $errorMessages = [], $code = 404): JsonResponse
     {
         $response = ['success' => false,

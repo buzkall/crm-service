@@ -56,9 +56,4 @@ class AuthController extends Controller
 
         return $this->sendSuccess('Successfully logged out');
     }
-
-    public function user(Request $request): JsonResponse
-    {
-        return $this->sendResponse($request->user());
-    }
 }
