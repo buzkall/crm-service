@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -46,22 +44,5 @@ class UserController extends Controller
     {
         $user->delete();
         return $this->sendNoContent();
-    }
-
-    public function updateAdminStatus(Request $request, User $user): JsonResponse
-    {
-        $this->authorize('updateAdminStatus', [User::class, $user]);
-
-        $validator = Validator::make($request->all(), [
-            'is_admin' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors(), 422);
-        }
-
-        $user->is_admin = $request->is_admin;
-        $user->save();
-        return $this->sendSuccess('Status successfully changed');
     }
 }

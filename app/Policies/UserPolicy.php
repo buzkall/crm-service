@@ -74,16 +74,4 @@ class UserPolicy
         return false;
     }
 
-    /**
-     * Determine whether the user can change the admin status of the model.
-     *
-     * @param User $user
-     * @param User $model
-     * @return bool
-     */
-    public function updateAdminStatus(User $user, User $model): bool
-    {
-        return false;
-    }
-
 }

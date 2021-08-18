@@ -125,26 +125,31 @@ test('Admin User can change admin status', function () {
     $this->assertFalse($user->is_admin);
 
     $this->actingAs($this->adminUser, 'api')
-         ->put('/api/update-admin-status/' . $user->id, ['is_admin' => true])
+         ->put('/api/users/' . $user->id, ['is_admin' => true])
          ->assertOk()
          ->assertJsonFragment(['success' => true])
-         ->assertJsonFragment(['message' => 'Status successfully changed']);
+         ->assertJsonFragment(['message' => 'User successfully updated']);
+    $this->assertTrue($user->fresh()->is_admin);
+
+    // no is_admin field
+    $this->actingAs($this->adminUser, 'api')
+         ->put('/api/users/' . $user->id, [])
+         ->assertOk()
+         ->assertJsonFragment(['success' => true]);
 
     $this->assertTrue($user->fresh()->is_admin);
 
     $this->actingAs($this->adminUser, 'api')
-         ->put('/api/update-admin-status/' . $user->id, ['is_admin' => false])
+         ->put('/api/users/' . $user->id, ['is_admin' => false])
          ->assertOk()
          ->assertJsonFragment(['success' => true])
-         ->assertJsonFragment(['message' => 'Status successfully changed']);
-
-    $this->assertFalse($user->fresh()->is_admin);
+         ->assertJsonFragment(['message' => 'User successfully updated']);
 
     $this->actingAs($this->adminUser, 'api')
-         ->put('/api/update-admin-status/' . $user->id)
+         ->put('/api/users/' . $user->id, ['is_admin' => 'fake'])
          ->assertStatus(422)
          ->assertJsonFragment(['success' => false])
-         ->assertJsonFragment(['is_admin' => ['The is admin field is required.']]);
+         ->assertJsonFragment(['is_admin' => ['The is admin field must be true or false.']]);
 
     $this->assertFalse($user->fresh()->is_admin);
 });
@@ -153,7 +158,7 @@ test('Non admin User cannot change admin status', function () {
     $user = User::factory()->create();
 
     $this->actingAs($this->nonAdminUser, 'api')
-         ->put('/api/update-admin-status/' . $user->id, ['is_admin' => true])
+         ->put('/api/users/' . $user->id, ['is_admin' => true])
          ->assertForbidden();
 });
 

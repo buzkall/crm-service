@@ -11,7 +11,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 
     Route::resource('/users', UserController::class)->except(['create', 'edit']);
-    Route::put('/update-admin-status/{user}', [UserController::class, 'updateAdminStatus']);
 });
 
 
