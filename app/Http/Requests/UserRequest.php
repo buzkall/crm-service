@@ -2,11 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class UserRequest extends FormRequest
+class UserRequest extends BaseRequest
 {
-
     protected function prepareForValidation()
     {
         $this->merge(['password' => bcrypt($this->password)]);
@@ -17,6 +14,7 @@ class UserRequest extends FormRequest
         return [
             'name'     => 'string',
             'email'    => 'string',
+            'is_admin' => 'boolean',
             'password' => 'string',
         ];
     }
