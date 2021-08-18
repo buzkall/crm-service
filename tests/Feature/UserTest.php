@@ -29,6 +29,15 @@ test('Non admin User cannot list all users', function () {
          ->assertForbidden();
 });
 
+test('Non logged User cannot list all users', function () {
+    $this->get('/api/users')
+         ->assertRedirect('/');
+
+    $this->withHeaders(['Accept' => 'application/json'])
+         ->get('/api/users')
+         ->assertUnauthorized();
+});
+
 test('Admin User can show a user', function () {
     $this->actingAs($this->adminUser, 'api')
          ->get('/api/users/' . $this->adminUser->id)
@@ -59,7 +68,8 @@ test('Admin User can create a user', function () {
                    ->assertJsonFragment(['success' => true])
                    ->assertJsonFragment(['message' => 'New user successfully created'])
                    ->assertJsonFragment(['name' => $data['name']])
-                   ->assertJsonFragment(['email' => $data['email']]);
+                   ->assertJsonFragment(['email' => $data['email']])
+                   ->assertJsonFragment(['is_admin' => true]);
 
     // check the password has been hashed in db
     $user = User::find($result['data']['id']);
