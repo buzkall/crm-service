@@ -60,12 +60,12 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "test1@mail.com",
+							"value": "admin@mail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "123456",
+							"value": "crm,service",
 							"type": "text"
 						},
 						{
@@ -131,7 +131,7 @@
 			"response": []
 		},
 		{
-			"name": "user",
+			"name": "User list",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -159,7 +159,7 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "https://crmservice.devel/api/user",
+					"raw": "https://crmservice.devel/api/users",
 					"protocol": "https",
 					"host": [
 						"crmservice",
@@ -167,7 +167,406 @@
 					],
 					"path": [
 						"api",
-						"user"
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User show",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://crmservice.devel/api/users/1",
+					"protocol": "https",
+					"host": [
+						"crmservice",
+						"devel"
+					],
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "email@mail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://crmservice.devel/api/users",
+					"protocol": "https",
+					"host": [
+						"crmservice",
+						"devel"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User update (fake put)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name4",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "email@mail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://crmservice.devel/api/users/25?_method=PUT",
+					"protocol": "https",
+					"host": [
+						"crmservice",
+						"devel"
+					],
+					"path": [
+						"api",
+						"users",
+						"25"
+					],
+					"query": [
+						{
+							"key": "_method",
+							"value": "PUT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://crmservice.devel/api/users/24",
+					"protocol": "https",
+					"host": [
+						"crmservice",
+						"devel"
+					],
+					"path": [
+						"api",
+						"users",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer show",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://crmservice.devel/api/customers/5",
+					"protocol": "https",
+					"host": [
+						"crmservice",
+						"devel"
+					],
+					"path": [
+						"api",
+						"customers",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "surname",
+							"type": "text"
+						},
+						{
+							"key": "photo_file",
+							"type": "file",
+							"src": "/Users/buzkall/Dropbox/Fun/Images/Wallpapers/Patterns/oranges.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://crmservice.devel/api/customers",
+					"protocol": "https",
+					"host": [
+						"crmservice",
+						"devel"
+					],
+					"path": [
+						"api",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer update (fake put)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "name2",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "surname2",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "photo_file",
+							"type": "file",
+							"src": "/Users/buzkall/Dropbox/Fun/Images/Wallpapers/Patterns/subway.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://crmservice.devel/api/customers/9?_method=PUT",
+					"protocol": "https",
+					"host": [
+						"crmservice",
+						"devel"
+					],
+					"path": [
+						"api",
+						"customers",
+						"9"
+					],
+					"query": [
+						{
+							"key": "_method",
+							"value": "PUT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://crmservice.devel/api/customers/7",
+					"protocol": "https",
+					"host": [
+						"crmservice",
+						"devel"
+					],
+					"path": [
+						"api",
+						"customers",
+						"7"
 					]
 				}
 			},

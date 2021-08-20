@@ -16,17 +16,25 @@
 
 
 3. Create sqlite database file and run migrations (can be changed to mysql. Using sqlite to simplify)
-   The seed parameter will create two dummy users: admin@mail.com, user@mail.com, password is in the DatabaseSeeder file
     ```
-    touch database/crm_service.sqlite
     php artisan migrate --seed
     ```
 
-
 4. Configure Laravel Passport to handle API tokens
-
     ```
    php artisan passport:install
+    ```
+   
+5. Run migrations and seed.
+The seed parameter will create two dummy users: admin@mail.com, user@mail.com, their dummy passwords are in the DatabaseSeeder file
+
+   ```
+   php artisan migrate --seed
+    ```
+   
+6. Link the storage public folder for the uploads in customers
+    ```
+   php artisan storage:link
     ```
 
 Project can run using 'php artisan serve' or using Docker with Laravel Sail

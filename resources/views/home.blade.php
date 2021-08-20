@@ -66,7 +66,13 @@
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            routes
+                            <ul>
+                                <li>GET /api/customers</li>
+                                <li>POST /api/customers</li>
+                                <li>GET /api/customers/{id}</li>
+                                <li>PUT /api/customers/{id}</li>
+                                <li>DELETE /api/customers/{id}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -98,7 +104,6 @@
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            -
                         </div>
                     </div>
                 </div>
