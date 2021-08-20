@@ -52,4 +52,4 @@ php artisan test
 There is an exported collection of all the endpoints in Postman in ./crm_service.postman_collection.json
 
 
-![](https://c.tenor.com/pPKOYQpTO8AAAAAd/monkey-developer.gif)
+![](<https://c.tenor.com/pPKOYQpTO8AAAAAd/monkey-developer.gif>)
