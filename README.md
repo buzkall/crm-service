@@ -38,7 +38,9 @@ The seed parameter will create two dummy users: admin@mail.com, user@mail.com, t
    php artisan storage:link
     ```
 
-Project can run using 'php artisan serve' or using Docker with Laravel Sail
+Project has been tested using the Vagrant box [Homestead](https://laravel.com/docs/8.x/homestead).
+
+But can also run locally using 'php artisan serve' or using Docker with [Laravel Sail](https://laravel.com/docs/8.x/sail)
 
 ## Test
 
@@ -47,4 +49,7 @@ To run tests, execute
 php artisan test
 ```
 
-There is an exported collection of all the endpoints in Postman in ./crm_service.postman_collection.json  
+There is an exported collection of all the endpoints in Postman in ./crm_service.postman_collection.json
+
+
+![](https://c.tenor.com/pPKOYQpTO8AAAAAd/monkey-developer.gif)

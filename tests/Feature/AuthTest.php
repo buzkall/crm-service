@@ -131,8 +131,9 @@ test('User is able to login', function () {
     $password = 'secret';
     $user = User::factory()->create(['password' => bcrypt($password)]);
 
-    $input = ['email'    => $user->email,
-              'password' => $password];
+    $input = ['email'       => $user->email,
+              'password'    => $password,
+              'remember_me' => 1];
 
     $this->post('/api/login', $input)
          ->assertOk()

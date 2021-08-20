@@ -27,7 +27,7 @@ test('Admin user can list all customers', function () {
          ->get('/api/customers')
          ->assertOk()
          ->assertJsonCount($before + $count, 'data')
-         ->assertSeeText($customers[0]->name)
+         ->assertSeeText(e($customers[0]->name))
          ->assertJsonFragment(['surname' => e($customers[0]->surname)])
          ->assertJsonFragment(['creator_user_id' => $this->adminUser->id]);
 
@@ -44,7 +44,7 @@ test('Non Admin user can list all customers', function () {
          ->get('/api/customers')
          ->assertOk()
          ->assertJsonCount($before + $count, 'data')
-         ->assertSeeText($customers[0]->name)
+         ->assertSeeText(e($customers[0]->name))
          ->assertJsonFragment(['surname' => e($customers[0]->surname)])
          ->assertJsonFragment(['creator_user_id' => $this->adminUser->id]);
 
@@ -60,8 +60,8 @@ test('Admin user can show a customer', function () {
          ->get('/api/customers/' . $customer->id)
          ->assertOk()
          ->assertJsonStructure(['data' => ['id', 'name', 'surname', 'photo_file', 'creator_user_id', 'updater_user_id', 'photo_url']])
-         ->assertJsonFragment(['name' => $customer['name']])
-         ->assertJsonFragment(['surname' => $customer['surname']])
+         ->assertJsonFragment(['name' => e($customer['name'])])
+         ->assertJsonFragment(['surname' => e($customer['surname'])])
          ->assertJsonFragment(['creator_user_id' => $this->nonAdminUser->id])
          ->assertJsonFragment(['updater_user_id' => null]);
 
@@ -80,8 +80,8 @@ test('Non admin user can show a customer', function () {
          ->get('/api/customers/' . $customer->id)
          ->assertOk()
          ->assertJsonStructure(['data' => ['id', 'name', 'surname', 'photo_file', 'creator_user_id', 'updater_user_id', 'photo_url']])
-         ->assertJsonFragment(['name' => $customer['name']])
-         ->assertJsonFragment(['surname' => $customer['surname']])
+         ->assertJsonFragment(['name' => e($customer['name'])])
+         ->assertJsonFragment(['surname' => e($customer['surname'])])
          ->assertJsonFragment(['creator_user_id' => $this->nonAdminUser->id])
          ->assertJsonFragment(['updater_user_id' => null]);
 
@@ -113,9 +113,8 @@ test('Admin user can create a customer and upload a photo', function () {
          ->assertCreated()
          ->assertJsonFragment(['photo_file' => 'public/' . $file->hashName()])
          ->assertJsonFragment(['photo_url' => asset('storage/public/' . $file->hashName())])
-         ->assertJsonFragment(['name' => $data['name']])
-         ->assertJsonFragment(['surname' => $data['surname']])
-         ->assertJsonFragment(['surname' => $data['surname']])
+         ->assertJsonFragment(['name' => e($data['name'])])
+         ->assertJsonFragment(['surname' => e($data['surname'])])
          ->assertJsonStructure(['data' => ['id', 'name', 'surname', 'photo_file', 'creator_user_id', 'updater_user_id', 'photo_url']])
          ->assertJsonFragment(['creator_user_id' => $this->adminUser->id])
          ->assertJsonFragment(['updater_user_id' => $this->adminUser->id]);
@@ -134,9 +133,8 @@ test('Non Admin user can create a customer and upload a photo', function () {
          ->assertCreated()
          ->assertJsonFragment(['photo_file' => 'public/' . $file->hashName()])
          ->assertJsonFragment(['photo_url' => asset('storage/public/' . $file->hashName())])
-         ->assertJsonFragment(['name' => $data['name']])
-         ->assertJsonFragment(['surname' => $data['surname']])
-         ->assertJsonFragment(['surname' => $data['surname']])
+         ->assertJsonFragment(['name' => e($data['name'])])
+         ->assertJsonFragment(['surname' => e($data['surname'])])
          ->assertJsonStructure(['data' => ['id', 'name', 'surname', 'photo_file', 'creator_user_id', 'updater_user_id', 'photo_url']])
          ->assertJsonFragment(['creator_user_id' => $this->nonAdminUser->id])
          ->assertJsonFragment(['updater_user_id' => $this->nonAdminUser->id]);
@@ -153,8 +151,8 @@ test('Admin user can update a customer', function () {
          ->put('/api/customers/' . $customer->id, $data)
          ->assertOk()
          ->assertJsonFragment(['success' => true])
-         ->assertJsonFragment(['name' => $data['name']])
-         ->assertJsonFragment(['surname' => $data['surname']])
+         ->assertJsonFragment(['name' => e($data['name'])])
+         ->assertJsonFragment(['surname' => e($data['surname'])])
          ->assertJsonFragment(['photo_file' => $customer['photo_file']]) // hasn't change
          ->assertJsonStructure(['data' => ['id', 'name', 'surname', 'photo_file', 'creator_user_id', 'updater_user_id', 'photo_url']])
          ->assertJsonFragment(['creator_user_id' => $this->adminUser->id])
