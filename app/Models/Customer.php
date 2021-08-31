@@ -40,7 +40,7 @@ class Customer extends Model
 
     public function getPhotoUrlAttribute()
     {
-        return asset('storage/' . $this->photo_file);
+        return Storage::disk('public')->url($this->photo_file);
     }
 
     public function creator(): BelongsTo

@@ -269,7 +269,7 @@
 			"response": []
 		},
 		{
-			"name": "User update (fake put)",
+			"name": "User update",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -281,7 +281,7 @@
 						}
 					]
 				},
-				"method": "POST",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Accept",
@@ -290,22 +290,27 @@
 					}
 				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
+					"mode": "urlencoded",
+					"urlencoded": [
 						{
 							"key": "name",
-							"value": "name4",
+							"value": "name42ee",
 							"type": "text"
 						},
 						{
 							"key": "email",
 							"value": "email@mail.com",
 							"type": "text"
+						},
+						{
+							"key": "is_admin",
+							"value": "0",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "https://crmservice.devel/api/users/25?_method=PUT",
+					"raw": "https://crmservice.devel/api/users/3",
 					"protocol": "https",
 					"host": [
 						"crmservice",
@@ -314,12 +319,13 @@
 					"path": [
 						"api",
 						"users",
-						"25"
+						"3"
 					],
 					"query": [
 						{
 							"key": "_method",
-							"value": "PUT"
+							"value": "PUT",
+							"disabled": true
 						}
 					]
 				}
@@ -448,7 +454,7 @@
 						{
 							"key": "photo_file",
 							"type": "file",
-							"src": "/Users/buzkall/Dropbox/Fun/Images/Wallpapers/Patterns/oranges.png"
+							"src": "/Users/buzkall/Dropbox/Fun/Images/Wallpapers/Patterns/rainbow.png"
 						}
 					]
 				},
@@ -468,7 +474,7 @@
 			"response": []
 		},
 		{
-			"name": "Customer update (fake put)",
+			"name": "Customer update",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -480,7 +486,7 @@
 						}
 					]
 				},
-				"method": "POST",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Accept",
@@ -489,28 +495,22 @@
 					}
 				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
+					"mode": "urlencoded",
+					"urlencoded": [
 						{
 							"key": "name",
-							"value": "name2",
+							"value": "name3",
 							"type": "text"
 						},
 						{
 							"key": "surname",
-							"value": "surname2",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "photo_file",
-							"type": "file",
-							"src": "/Users/buzkall/Dropbox/Fun/Images/Wallpapers/Patterns/subway.png"
+							"value": "surname2o",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "https://crmservice.devel/api/customers/9?_method=PUT",
+					"raw": "https://crmservice.devel/api/customers/5",
 					"protocol": "https",
 					"host": [
 						"crmservice",
@@ -519,13 +519,7 @@
 					"path": [
 						"api",
 						"customers",
-						"9"
-					],
-					"query": [
-						{
-							"key": "_method",
-							"value": "PUT"
-						}
+						"5"
 					]
 				}
 			},

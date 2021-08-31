@@ -8,8 +8,8 @@ class CustomerRequest extends BaseRequest
     {
         if ($this->getMethod() === 'PUT') { // updating
             return [
-                'name'       => '',
-                'surname'    => '',
+                'name'       => 'string',
+                'surname'    => 'string',
                 'photo_file' => 'file',
             ];
         }

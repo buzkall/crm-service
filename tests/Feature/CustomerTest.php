@@ -111,8 +111,8 @@ test('Admin user can create a customer and upload a photo', function () {
     $this->actingAs($this->adminUser, 'api')
          ->post('/api/customers', $data)
          ->assertCreated()
-         ->assertJsonFragment(['photo_file' => 'public/' . $file->hashName()])
-         ->assertJsonFragment(['photo_url' => asset('storage/public/' . $file->hashName())])
+         ->assertJsonFragment(['photo_file' => $file->hashName()])
+         ->assertJsonFragment(['photo_url' => asset('storage/' . $file->hashName())])
          ->assertJsonFragment(['name' => e($data['name'])])
          ->assertJsonFragment(['surname' => e($data['surname'])])
          ->assertJsonStructure(['data' => ['id', 'name', 'surname', 'photo_file', 'creator_user_id', 'updater_user_id', 'photo_url']])
@@ -131,8 +131,8 @@ test('Non Admin user can create a customer and upload a photo', function () {
     $this->actingAs($this->nonAdminUser, 'api')
          ->post('/api/customers', $data)
          ->assertCreated()
-         ->assertJsonFragment(['photo_file' => 'public/' . $file->hashName()])
-         ->assertJsonFragment(['photo_url' => asset('storage/public/' . $file->hashName())])
+         ->assertJsonFragment(['photo_file' => $file->hashName()])
+         ->assertJsonFragment(['photo_url' => asset('storage/' . $file->hashName())])
          ->assertJsonFragment(['name' => e($data['name'])])
          ->assertJsonFragment(['surname' => e($data['surname'])])
          ->assertJsonStructure(['data' => ['id', 'name', 'surname', 'photo_file', 'creator_user_id', 'updater_user_id', 'photo_url']])
@@ -166,8 +166,8 @@ test('Admin user can update a customer', function () {
          ->put('/api/customers/' . $customer->id, $data)
          ->assertOk()
          ->assertJsonFragment(['success' => true])
-         ->assertJsonFragment(['photo_file' => 'public/' . $file->hashName()])
-         ->assertJsonFragment(['photo_url' => asset('storage/public/' . $file->hashName())])
+         ->assertJsonFragment(['photo_file' => $file->hashName()])
+         ->assertJsonFragment(['photo_url' => asset('storage/' . $file->hashName())])
          ->assertJsonFragment(['updater_user_id' => $this->adminUser->id]);
 
     // delete photos from storage
@@ -201,8 +201,8 @@ test('Non Admin user can update a customer', function () {
          ->put('/api/customers/' . $customer->id, $data)
          ->assertOk()
          ->assertJsonFragment(['success' => true])
-         ->assertJsonFragment(['photo_file' => 'public/' . $file->hashName()])
-         ->assertJsonFragment(['photo_url' => asset('storage/public/' . $file->hashName())])
+         ->assertJsonFragment(['photo_file' => $file->hashName()])
+         ->assertJsonFragment(['photo_url' => asset('storage/' . $file->hashName())])
          ->assertJsonFragment(['updater_user_id' => $this->nonAdminUser->id]);
 
     // delete photos from storage

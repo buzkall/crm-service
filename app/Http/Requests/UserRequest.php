@@ -11,11 +11,19 @@ class UserRequest extends BaseRequest
 
     public function rules()
     {
+        if ($this->getMethod() === 'PUT') { // updating
+            return [
+                'name'     => 'string',
+                'email'    => 'string|unique:users,id',
+                'is_admin' => 'boolean',
+                'password' => 'string',
+            ];
+        }
         return [
-            'name'     => 'string',
-            'email'    => 'string',
+            'name'     => 'required|string',
+            'email'    => 'required|string|unique:users',
             'is_admin' => 'boolean',
-            'password' => 'string',
+            'password' => 'required|string',
         ];
     }
 }

@@ -57,7 +57,8 @@ class CustomerController extends Controller
             if ($customer->photo_file) {
                 Storage::delete($customer->photo_file);
             }
-            $customer->photo_file = $request->file('photo_file')->store('public');
+            $path = $request->file('photo_file')->store('public');
+            $customer->photo_file = basename($path);
             $customer->save();
         }
     }
